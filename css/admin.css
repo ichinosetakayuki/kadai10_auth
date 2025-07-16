@@ -1,0 +1,83 @@
+* {
+  box-sizing: border-box;
+}
+
+header {
+  text-align: end;
+  margin-right: 40px;
+}
+
+main {
+  max-width: 960px;
+  width: calc(100% - 40px);
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.2rem;
+  border-left: 8px solid lightcoral;
+  padding-left: 8px;
+}
+
+form {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+form label {
+  display: block;
+  width: 100px;
+}
+
+.form-item {
+  display: flex;
+  gap: 10px;
+}
+
+#song_title {
+  width: 400px;
+}
+
+#youtube_id {
+  width: 200px;
+}
+
+#start_time_sec,
+#end_time_sec {
+  width: 80px;
+}
+
+form button {
+  width: 160px;
+  /* margin: 0 auto; */
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+#update_btn {
+  display:none
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid lightgray;
+}
+
+th,
+tr,
+td {
+  border: 1px solid lightgray;
+  padding: 8px;
+
+}
