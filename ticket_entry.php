@@ -46,17 +46,11 @@ $seat_type = isset($_SESSION['ticket_data']['seat_type']) ? $_SESSION['ticket_da
     <h2><img src="img/moritaka_anime00.png" alt="森高アイコン">　ライブチケットエントリー</h2>
     <div class="form-wrapper">
       <div class="img-wrapper">
-        <!-- <div id="player-container"> -->
         <img src="img/moritaka_img05.jpg" alt="森高写真">
-        <!-- </div> -->
       </div>
       <div id="form-area">
         <p><?= htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8') ?>さんの申し込み入力</p>
         <form action="ticket_confirm.php" method="POST">
-          <!-- <div>
-            <label for="username">ユーザー名</label>
-            <input type="text" name="username">
-          </div> -->
           <div class="form-item-b">
             <label for="live_date">希望公演選択</label>
             <select name="live_date" id="live_date" required>

@@ -22,6 +22,7 @@ if($_SESSION['is_admin'] === 0) {
 
 <body>
   <header>
+    <div class="to-ticket-read"><a href="ticket_read.php">チケット一覧画面へ</a></div>
     <div class="to-index"><a href="index.php">INDEX画面へ</a></div>
   </header>
   <main>

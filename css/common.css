@@ -17,7 +17,6 @@ header {
   gap: 20px;
   align-items: end;
   height: 5vh;
-  /* padding-bottom: 8px; */
   border-bottom: 1px solid lightcyan;
 }
 
@@ -32,14 +31,12 @@ h1 {
 
 h1 span {
   color: rgb(249, 4, 4);
-  /* text-shadow: 0 1px rgb(245, 245, 242); */
   font-size: 1.5rem;
 }
 
 .header-right {
   display: flex;
   justify-content: end;
-  /* margin-right: 10%; */
   gap: 20px;
   align-items: end;
 }
@@ -52,26 +49,14 @@ h1 span {
 .to-top a {
   color: aliceblue;
   font-size: 0.8rem;
-  /* vertical-align: middle; */
   text-decoration: none;
 }
-
-
 
 .bg-wrapper {
   position: relative;
   height: 90vh;
   margin-top: 5vh;
 }
-
-/* .bg-img {
-  position: absolute;
-  z-index: -1;
-  left: 0;
-  bottom: 0;
-  height: 80vh;
-  opacity: 0.2;
-} */
 
 h2 {
   text-align: center;
@@ -90,6 +75,7 @@ h2 img {
 }
 
 .form-wrapper {
+  max-width: 460px;
   width: 50%;
   margin: 0 auto;
   background: rgb(235, 252, 252);
@@ -116,18 +102,6 @@ h2 img {
   object-fit: cover;
 }
 
-/* #desc-area {
-  padding: 0 10px;
-} */
-
-/* #desc-area strong {
-  border-left: 8px solid lightcoral;
-  padding-left: 8px;
-} */
-
-/* #song-title {
-  font-weight: bold;
-} */
 
 .form-area {
   display: flex;
@@ -167,7 +141,6 @@ form input {
 }
 
 .form-item-b {
-  /* padding-left: 16px; */
   border-left: 8px solid lightcoral;
   padding-left: 8px;
 
