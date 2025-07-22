@@ -98,7 +98,6 @@ $("#update_btn").on("click", function () {
 // データの削除
 $("#scene-list").on("click", ".delete_icon", function () {
   const sceneId = $(this).data("id");
-  // const scene = allSceneData.find(scene => scene.id === id);
   const message = confirm(`「id：${sceneId}」のデータを削除してよろしいですか？`);
   if(!message) {
     return;

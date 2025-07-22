@@ -17,14 +17,9 @@ header {
   gap: 20px;
   align-items: end;
   height: 5vh;
-  /* padding-bottom: 8px; */
   border-bottom: 1px solid lightcyan;
 }
 
-/* .to-admin {
-  text-align: end;
-  margin-right: 10%;
-} */
 h1 {
   font-size: 1.2rem;
   color: aliceblue;
@@ -35,7 +30,6 @@ h1 {
 
 h1 span {
   color: rgb(249, 4, 4);
-  /* text-shadow: 0 1px rgb(245, 245, 242); */
   font-size: 1.5rem;
 }
 
@@ -43,7 +37,6 @@ h1 span {
 .header-right {
   display: flex;
   justify-content: end;
-  /* margin-right: 10%; */
   gap: 20px;
   align-items: end;
 }
@@ -56,7 +49,6 @@ h1 span {
 .to-top a {
   color: aliceblue;
   font-size: 0.7rem;
-  /* vertical-align: middle; */
   text-decoration: none;
 }
 
@@ -92,6 +84,7 @@ h2 img {
 }
 
 .player-wrapper {
+  max-width: 460px;
   width: 50%;
   margin: 0 auto;
   background: rgb(235, 252, 252);
@@ -117,10 +110,6 @@ h2 img {
   height: 100%;
 }
 
-/* #desc-area {
-  padding: 0 10px;
-} */
-
 #desc-area strong {
   border-left: 8px solid lightcoral;
   padding-left: 8px;
@@ -132,5 +121,4 @@ h2 img {
 
 #scene-desc {
   font-size: 0.8rem;
-  /* padding-left: 8px; */
 }
