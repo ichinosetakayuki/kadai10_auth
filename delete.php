@@ -1,6 +1,7 @@
 <?php
 header('Content-Type: application/json');
 
+session_name('kadai10');
 session_start();
 require_once('funcs.php');
 check_session_id();

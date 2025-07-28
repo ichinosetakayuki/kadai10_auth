@@ -1,4 +1,5 @@
 <?php
+session_name('kadai10');
 session_start();
 $_SESSION = array();
 if (isset($_COOKIE[session_name()])) {

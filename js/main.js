@@ -18,12 +18,12 @@ window.addEventListener("DOMContentLoaded", () => {
     .then(function (response) {
       sceneData = response.data;
       console.log("axiosで取得したデータ：", sceneData);
-      inputInfo(); // 曲情報などをhtmlに表示
+      displayInfo(); // 曲情報などをhtmlに表示
 
       // Youtube APIが読み込み済みならプレイヤー作成
       // YT→YouTube IFrame Player API によって提供されるグローバルオブジェクト
       // YT.player→YouTubeのプレイヤーを作るためのクラス（コンストラクタ関数）
-      if(typeof YT !== 'undefined' && typeof YT.Player !== 'undefined') {
+      if (typeof YT !== 'undefined' && typeof YT.Player !== 'undefined') {
         createPlayer(); // APIが完全に読み込まれているならすぐにプレーヤーを作る
       } else {
         // API読み込み後にプレイヤー作成
@@ -72,7 +72,7 @@ function onPlayerReady(event) {
 function onPlayerStateChange(event) {
   const state = event.data;
 
-  if(state === YT.PlayerState.PLAYING) { // 再生が実際に始まったタイミングでsetStopTimerを呼ぶ
+  if (state === YT.PlayerState.PLAYING) { // 再生が実際に始まったタイミングでsetStopTimerを呼ぶ
     console.log("動画が再生されました。stopタイマーをセットします。");
     setStopTimer();
   }
@@ -108,7 +108,57 @@ $("#next-scene-btn").on("click", function () {
 });
 
 // 曲情報などをhtmlに表示
-function inputInfo() {
+function displayInfo() {
+  // const likeCount = sceneData.like_count !== null ? sceneData.like_count : 0;
+  console.log(sceneData.like_count);
+  // likeCount = likeCount !== null ? likeCount : 0;
+  $("#like-count").html(sceneData.like_count);
   $("#song-title").html(sceneData.song_title);
   $("#scene-desc").html(sceneData.description);
 }
+
+$("#like-link").on("click", function (event) {
+  event.preventDefault();
+
+  const userId = $(this).data("user-id");
+  const crrentSceneId = sceneData.id;
+
+  axios.get('like_create.php', {
+    params: {
+      user_id: userId,
+      mv_id: crrentSceneId
+    }
+  })
+    .then(function (response) {
+      console.log("レスポンス全体:", response.data);
+      // const likeCount = response.data.like_count !== null ? response.data.like_count : 0;
+        $("#like-count").html(response.data.like_count);
+
+    })
+    .catch(function (error) {
+      console.error("エラーが発生しました：", error);
+    })
+
+  // $.ajax({
+  //   url: 'like_create.php',
+  //   method: 'GET',
+  //   data: {
+  //     user_id: userId,
+  //     mv_id: crrentSceneId
+  //   },
+  //   success: function (response) {
+  //     console.log("レスポンス全体:", response);
+  //     if (response.status === "success") {
+  //       console.log("いいねが正常に処理されました");
+  //       console.log("メッセージ：",response.message);
+  //       console.log("いいねのカウント",response.like_count);
+  //     } else {
+  //       console.log("エラーが発生しました：" + response.message);
+  //     }
+  //   },
+  //   error: function (xhr, status, error) {
+  //     console.log("エラーが発生しました：" + error);
+  //   }
+  // });
+
+});

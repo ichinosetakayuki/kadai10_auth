@@ -110,6 +110,10 @@ h2 img {
   height: 100%;
 }
 
+.like {
+  text-align: end;
+}
+
 #desc-area strong {
   border-left: 8px solid lightcoral;
   padding-left: 8px;
