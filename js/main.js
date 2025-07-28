@@ -1,3 +1,5 @@
+import { displayMvInfo, changedLikeIconColor } from './display_func.js';
+
 let sceneData; // read.phpで読み込んだデータを格納
 let player; // Youtube Playerオブジェクト
 let timerId; // 再生停止用のタイマーID
@@ -18,7 +20,8 @@ window.addEventListener("DOMContentLoaded", () => {
     .then(function (response) {
       sceneData = response.data;
       console.log("axiosで取得したデータ：", sceneData);
-      displayInfo(); // 曲情報などをhtmlに表示
+      displayMvInfo(sceneData); // 曲情報などをhtmlに表示
+      changedLikeIconColor(sceneData.is_liked);
 
       // Youtube APIが読み込み済みならプレイヤー作成
       // YT→YouTube IFrame Player API によって提供されるグローバルオブジェクト
@@ -107,16 +110,9 @@ $("#next-scene-btn").on("click", function () {
   location.reload(); // 現在のページをリロードするメソッド
 });
 
-// 曲情報などをhtmlに表示
-function displayInfo() {
-  // const likeCount = sceneData.like_count !== null ? sceneData.like_count : 0;
-  console.log(sceneData.like_count);
-  // likeCount = likeCount !== null ? likeCount : 0;
-  $("#like-count").html(sceneData.like_count);
-  $("#song-title").html(sceneData.song_title);
-  $("#scene-desc").html(sceneData.description);
-}
 
+// いいねをクリックし、データをphpに送り、
+// 返ってきたデータを用い、いいね数と色を変える
 $("#like-link").on("click", function (event) {
   event.preventDefault();
 
@@ -131,34 +127,13 @@ $("#like-link").on("click", function (event) {
   })
     .then(function (response) {
       console.log("レスポンス全体:", response.data);
-      // const likeCount = response.data.like_count !== null ? response.data.like_count : 0;
-        $("#like-count").html(response.data.like_count);
-
+      $("#like-count").html(response.data.like_count);
+      changedLikeIconColor(response.data.is_liked);
     })
     .catch(function (error) {
       console.error("エラーが発生しました：", error);
     })
 
-  // $.ajax({
-  //   url: 'like_create.php',
-  //   method: 'GET',
-  //   data: {
-  //     user_id: userId,
-  //     mv_id: crrentSceneId
-  //   },
-  //   success: function (response) {
-  //     console.log("レスポンス全体:", response);
-  //     if (response.status === "success") {
-  //       console.log("いいねが正常に処理されました");
-  //       console.log("メッセージ：",response.message);
-  //       console.log("いいねのカウント",response.like_count);
-  //     } else {
-  //       console.log("エラーが発生しました：" + response.message);
-  //     }
-  //   },
-  //   error: function (xhr, status, error) {
-  //     console.log("エラーが発生しました：" + error);
-  //   }
-  // });
 
 });
+

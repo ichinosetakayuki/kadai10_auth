@@ -9,7 +9,7 @@ $mv_id = $_GET['mv_id']; //  main.jsのaxiosのparamsから取得
 
 $pdo = db_conn();
 
-// ログインユーザーがcurrentのmvがをいいねしたかどうかを調べる
+// ログインユーザーがcurrentのmvがをいいねしていたかどうかを調べる
 $sql =  'SELECT COUNT(*) FROM like_table WHERE user_id=:user_id AND mv_id=:mv_id';
 
 $stmt = $pdo->prepare($sql);

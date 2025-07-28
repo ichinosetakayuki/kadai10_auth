@@ -18,6 +18,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['session_id'])) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="css/index_style.css">
   <title>森高ランド(仮)</title>
 </head>
@@ -52,7 +53,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['session_id'])) {
       </div>
       <div id="desc-area">
         <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] !== '') : ?>
-          <p class="like"><a id="like-link" href="#" data-user-id="<?= $user_id ?>">いいね</a><span id="like-count"></span></p>
+          <p class="like"><a id="like-link" href="#" data-user-id="<?= $user_id ?>"><i class="bi bi-suit-heart-fill"></i></a><span id="like-count"></span></p>
         <?php endif; ?>
         <p><strong>曲 名：</strong> <span id="song-title"></span></p>
         <p><strong>シーン説明：</strong><br> <span id="scene-desc"></span></p>
@@ -65,7 +66,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['session_id'])) {
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <!-- axiosライブラリの読み込み -->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="js/main.js?v=1234"></script>
+  <script type="module" src="js/main.js?v=1234"></script>
 
 </body>
 

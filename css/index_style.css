@@ -112,6 +112,17 @@ h2 img {
 
 .like {
   text-align: end;
+  letter-spacing: 0.2rem;
+}
+
+#like-link {
+  text-decoration: none;
+  color: lightgrey;
+  /* color: lightcoral; */
+}
+
+#like-count {
+font-size: 0.9rem;
 }
 
 #desc-area strong {
