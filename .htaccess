@@ -1,0 +1,11 @@
+<FilesMatch "^\.env">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+<FilesMatch "^(\.git|\.htaccess|composer\.json|composer\.lock)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+Options -Indexes

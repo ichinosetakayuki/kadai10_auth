@@ -2,30 +2,17 @@
 // DB接続関数 :db_conn()
 function db_conn()
 {
-  require_once('env.php');
+  require_once __DIR__ . '/vendor/autoload.php';
 
-  $server_info = $_SERVER;
+  $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+  $dotenv->load();
 
-  $db_name = "";
-  $db_host = "";
-  $user = "";
-  $pwd = "";
+  $isLocalhost = ($_SERVER["SERVER_NAME"] === "localhost");
 
-  $sakura_db_info = sakura_db_info();
-
-  if ($server_info["SERVER_NAME"] == "localhost") {
-    // ローカルホストの場合
-    $db_name = 'gs_kadai10';
-    $db_host = 'localhost';
-    $user = 'root';
-    $pwd = '';
-  } else {
-    // さくらサーバ
-    $db_name = $sakura_db_info['db_name'];
-    $db_host = $sakura_db_info['db_host'];
-    $user = $sakura_db_info['user'];
-    $pwd = $sakura_db_info['pwd'];
-  }
+  $db_name = $isLocalhost ? $_ENV['DB_NAME'] : $_ENV['SAKURA_DB_NAME'];
+  $db_host = $isLocalhost ? $_ENV['DB_HOST'] : $_ENV['SAKURA_DB_HOST'];
+  $user = $isLocalhost ? $_ENV['DB_USER'] : $_ENV['SAKURA_DB_USER'];
+  $pwd = $isLocalhost ? $_ENV['DB_PASS'] : $_ENV['SAKURA_DB_PASS'];
 
   $dbn = "mysql:dbname={$db_name};charset=utf8mb4;port=3306;host={$db_host}";
 

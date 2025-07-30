@@ -1,4 +1,5 @@
-env.php
+.env
+/vendor/
 sql.sql
 .DS_Store
 
