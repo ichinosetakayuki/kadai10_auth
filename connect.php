@@ -2,11 +2,14 @@
 // DB接続関数 :db_conn()
 function db_conn()
 {
+  // Composerのオートロードを読み込み
   require_once __DIR__ . '/vendor/autoload.php';
 
+  // .envファイルから環境変数を読み込み
   $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
   $dotenv->load();
 
+  // ローカルサーバーとさくらサーバーを自動選択
   $isLocalhost = ($_SERVER["SERVER_NAME"] === "localhost");
 
   $db_name = $isLocalhost ? $_ENV['DB_NAME'] : $_ENV['SAKURA_DB_NAME'];
