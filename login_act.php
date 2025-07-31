@@ -1,4 +1,5 @@
 <?php
+session_name('kadai10');
 session_start();
 require_once('connect.php');
 

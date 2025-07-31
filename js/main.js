@@ -1,3 +1,5 @@
+import { displayMvInfo, changedLikeIconColor } from './display_func.js';
+
 let sceneData; // read.phpで読み込んだデータを格納
 let player; // Youtube Playerオブジェクト
 let timerId; // 再生停止用のタイマーID
@@ -18,12 +20,13 @@ window.addEventListener("DOMContentLoaded", () => {
     .then(function (response) {
       sceneData = response.data;
       console.log("axiosで取得したデータ：", sceneData);
-      inputInfo(); // 曲情報などをhtmlに表示
+      displayMvInfo(sceneData); // 曲情報などをhtmlに表示
+      changedLikeIconColor(sceneData.is_liked);
 
       // Youtube APIが読み込み済みならプレイヤー作成
       // YT→YouTube IFrame Player API によって提供されるグローバルオブジェクト
       // YT.player→YouTubeのプレイヤーを作るためのクラス（コンストラクタ関数）
-      if(typeof YT !== 'undefined' && typeof YT.Player !== 'undefined') {
+      if (typeof YT !== 'undefined' && typeof YT.Player !== 'undefined') {
         createPlayer(); // APIが完全に読み込まれているならすぐにプレーヤーを作る
       } else {
         // API読み込み後にプレイヤー作成
@@ -72,7 +75,7 @@ function onPlayerReady(event) {
 function onPlayerStateChange(event) {
   const state = event.data;
 
-  if(state === YT.PlayerState.PLAYING) { // 再生が実際に始まったタイミングでsetStopTimerを呼ぶ
+  if (state === YT.PlayerState.PLAYING) { // 再生が実際に始まったタイミングでsetStopTimerを呼ぶ
     console.log("動画が再生されました。stopタイマーをセットします。");
     setStopTimer();
   }
@@ -107,8 +110,30 @@ $("#next-scene-btn").on("click", function () {
   location.reload(); // 現在のページをリロードするメソッド
 });
 
-// 曲情報などをhtmlに表示
-function inputInfo() {
-  $("#song-title").html(sceneData.song_title);
-  $("#scene-desc").html(sceneData.description);
-}
+
+// いいねをクリックし、データをphpに送り、
+// 返ってきたデータを用い、いいね数と色を変える
+$("#like-link").on("click", function (event) {
+  event.preventDefault();
+
+  const userId = $(this).data("user-id");
+  const crrentSceneId = sceneData.id;
+
+  axios.get('like_create.php', {
+    params: {
+      user_id: userId,
+      mv_id: crrentSceneId
+    }
+  })
+    .then(function (response) {
+      console.log("レスポンス全体:", response.data);
+      $("#like-count").html(response.data.like_count);
+      changedLikeIconColor(response.data.is_liked);
+    })
+    .catch(function (error) {
+      console.error("エラーが発生しました：", error);
+    })
+
+
+});
+

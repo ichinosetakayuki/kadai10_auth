@@ -110,6 +110,21 @@ h2 img {
   height: 100%;
 }
 
+.like {
+  text-align: end;
+  letter-spacing: 0.2rem;
+}
+
+#like-link {
+  text-decoration: none;
+  color: lightgrey;
+  /* color: lightcoral; */
+}
+
+#like-count {
+font-size: 0.9rem;
+}
+
 #desc-area strong {
   border-left: 8px solid lightcoral;
   padding-left: 8px;
