@@ -42,10 +42,7 @@ h1 span {
 }
 
 .welcome,
-.to-ticket a,
-.to-admin a,
-.to-login a,
-.to-logout a,
+.to-subpage a,
 .to-top a {
   color: aliceblue;
   font-size: 0.8rem;
